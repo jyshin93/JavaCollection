@@ -38,10 +38,10 @@ public class Grade {
 	 주의 !!! 오버라이딩은 상속관계, 구현관계에서
 	 @Override 라고 붙은 메소드를 말함.!!
 	 * */
-/*	public int getTotal() {
+	public int getTotal() {
 		int total = this.kor + this.eng + this.math;
 		return total;
-	}*/
+	}
 
 	public int getKor() {
 		return kor;

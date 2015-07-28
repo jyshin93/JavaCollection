@@ -1,5 +1,7 @@
 package util.vector;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Vector;
 /*
  프로그램을 코딩하다 보면
@@ -64,8 +66,104 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public void ascGradeTotal() {
-		//
+		// 성적정렬
 		
 	}
 
+	@Override
+	public Vector<Grade> searchGradeByName(String name) {
+		Vector<Grade> temp = new Vector<Grade>();
+		Grade grade = null;
+		for (int i = 0; i < vec.size(); i++) {
+			String searchName = vec.elementAt(i).getName();
+			// 고정값(파라미터).euqlas(변수값)
+			if (name.equalsIgnoreCase(searchName)) {
+				grade = new Grade(vec.elementAt(i).getHakbun(), searchName,
+						vec.elementAt(i).getKor(),
+						vec.elementAt(i).getEng(),
+						vec.elementAt(i).getMath());
+				temp.add(grade);
+			}else {
+				//temp라는 백터를 완전히 비워서 null 로 리턴
+				temp.remove(new Grade()); //비어있는 vector로 리턴한다.
+			}
+		}
+		return temp;
+	}
+
+	@Override
+	public void descByTotal() {
+		// Java API 정렬담당 클래스 Comparator
+		// Comparator
+		// 인터페이스를 구현한 익명 내부 클래스
+		// anonymous inner class
+		Comparator<Grade> desc = new Comparator<Grade>() {
+			
+			@Override
+			public int compare(Grade g1, Grade g2) {
+				// 삼항연산자
+				/*
+				 if(조건식){
+				 	--> true 면 statement 실행
+				 }else{
+				 	--> flase 면 statement 실행
+				 }
+				 (조건식) ? 참 : 거짓;
+				 * */ 
+				/*if (g1.getTotal()<g2.getTotal()) {
+					return 1;
+				}else {
+					if (g1.getTotal()==g2.getTotal()) {
+						return 0;
+					}else {
+						return -1;
+					}
+				}*/
+				return (g1.getTotal() < g2.getTotal()) ? 1 :  
+						(g1.getTotal()==g2.getTotal()) ? 0 : -1;
+			}
+		};
+		Collections.sort(vec,desc);
+		System.out.println(vec.toString());
+	}
+
+	@Override
+	public void ascByName() {
+		Comparator<Grade> asc = new Comparator<Grade>() {
+			
+			public int compare(Grade n1, Grade n2){
+				// 값(value) 이 int 타입이 아니고
+				// String 타입의 우선순위 결정할 때는...compareTo를 사용!!!
+				
+				
+				return n1.getName().compareTo(n2.getName());
+			}
+		};
+		Collections.sort(vec,asc);
+		System.out.println(vec.toString());
+		
+	}
+
+	/*@Override
+	public String searchGradeByName(String name) {
+		String msg = "";
+		Grade grade = null;
+		for (int i = 0; i < vec.size(); i++) {
+			String searchName = vec.elementAt(i).getName();
+			if (name.equalsIgnoreCase(searchName)) {
+				String hakbun = vec.elementAt(i).getHakbun();
+				int kor = vec.elementAt(i).getKor();
+				int eng = vec.elementAt(i).getEng();
+				int math = vec.elementAt(i).getMath();
+				grade = new Grade(hakbun, searchName, kor, eng, math);
+				msg = grade.toString();
+				break;
+			}else {
+				msg = "조회하는 이름이 없습니다.";
+			}
+		}
+		return msg;
+	}*/
+
+	
 }
