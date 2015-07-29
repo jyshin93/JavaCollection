@@ -1,0 +1,21 @@
+ ArrayList/Vector/Stack[List]
+ 인덱스를 통한 실제값을 추적 => 배열
+ 
+ 치명적인 단점
+ => 검색자가 인덱스번호를 알지 못하면
+ 		내부 검색을 할 수 없다.
+ => 가독성이 좋은 키값(유일한 값)을
+ 알게하고 그것을 통해 실제값을 호출하는 구조를
+ 만들어야 한다.
+ Map 자바에서 무엇을 만들든지 간에
+ 최상위는 인터페이스로 부터 시작됩니다.
+ HashMap 클래스
+ Map map = new HashMap();
+ List<Grade> list = ArrayList<Grade>();
+ List<String> list = ArrayList<String>(); 스트링타입
+ 
+ Map<String,Object> map = new HashMap<String,Object>(); 맵은 String과 object로 구성된다(object는 객체 또는 클래스)
+ 또는
+ Map<K,V> map = new HashMap<K,V>();
+ 제네릭 (Generic) => 타입결정하는 문법
+ 
